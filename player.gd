@@ -6,6 +6,8 @@ const GRAVITY := 100
 
 @onready var animated_sprite = $AnimatedSprite2D
 
+@export var inv: InventoryData
+
 var look_direction: Vector2 = Vector2.DOWN
 
 func _physics_process(delta: float):
@@ -36,3 +38,6 @@ func get_direction_name() -> String:
 	if look_direction.x < 0: return "left"
 	if look_direction.x > 0: return "right"
 	return "down" 
+	
+func collect(item):
+	inv.insert(item) 

@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bi2ana22rxuil"]
+[gd_scene load_steps=7 format=3 uid="uid://bi2ana22rxuil"]
 
+[ext_resource type="Script" uid="uid://bq2lc37vog0ej" path="res://white_tree.gd" id="1_6l1m1"]
 [ext_resource type="Texture2D" uid="uid://bsi5j5rhe6r3h" path="res://RPG snow tileset (full).png" id="1_plb7d"]
+[ext_resource type="Resource" uid="uid://du45amnlawhrk" path="res://Resources/Items/gift_green.tres" id="2_1cqoo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6l1m1"]
 texture = ExtResource("1_plb7d")
@@ -679,18 +681,22 @@ texture = ExtResource("1_plb7d")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_6l1m1")
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_exet2"]
-radius = 4.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_plb7d"]
+radius = 5.0
 
-[node name="WhiteTree" type="StaticBody2D"]
-y_sort_enabled = true
-position = Vector2(0, -11)
+[node name="white_tree" type="Node2D"]
+script = ExtResource("1_6l1m1")
+item = ExtResource("2_1cqoo")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 y_sort_enabled = true
 tile_map_data = PackedByteArray(0, 0, 255, 255, 255, 255, 0, 0, 14, 0, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 14, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 1, 0, 0, 0, 0, 0, 255, 255, 0, 0, 15, 0, 0, 0, 0, 0)
 tile_set = SubResource("TileSet_1cqoo")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 11)
-shape = SubResource("CircleShape2D_exet2")
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 9)
+shape = SubResource("CircleShape2D_plb7d")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

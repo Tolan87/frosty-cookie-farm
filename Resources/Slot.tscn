@@ -3,12 +3,16 @@
 [ext_resource type="Texture2D" uid="uid://cgs7ejwbu3f3v" path="res://Slot_01_Empty.png" id="1_8wit3"]
 [ext_resource type="Script" uid="uid://bwhnl2w66yb8w" path="res://Resources/Slot.gd" id="2_61wiv"]
 
-[node name="Slot" type="TextureRect"]
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 0
-texture = ExtResource("1_8wit3")
+[node name="Slot" type="Panel"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(16, 16)
+offset_right = 16.0
+offset_bottom = 16.0
 script = ExtResource("2_61wiv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_8wit3")
+centered = false
 
 [node name="ItemTexture" type="TextureRect" parent="."]
 unique_name_in_owner = true
@@ -29,14 +33,20 @@ stretch_mode = 2
 
 [node name="ItemAmount" type="Label" parent="."]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(13, 14)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 9.0
+offset_right = 6.5
+offset_bottom = 7.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.4, 0.4)
 theme_override_constants/line_spacing = 1
-theme_override_font_sizes/font_size = 9
-text = "1"
+theme_override_font_sizes/font_size = 10
+text = "99"
 horizontal_alignment = 2
 vertical_alignment = 2

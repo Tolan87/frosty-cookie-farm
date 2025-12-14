@@ -1,9 +1,11 @@
-[gd_scene load_steps=44 format=3 uid="uid://b58l2luvq0ae6"]
+[gd_scene load_steps=46 format=3 uid="uid://b58l2luvq0ae6"]
 
 [ext_resource type="Script" uid="uid://ddxl81f1jeppq" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="Resource" uid="uid://bg04808q25l4i" path="res://Resources/playerInv.tres" id="2_2hs0m"]
 [ext_resource type="Texture2D" uid="uid://dw5i3w1waua63" path="res://character/Swashbuckler_idle.png" id="2_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://bey73ny4l1mkm" path="res://character/Swashbuckler_jump.png" id="3_hqtel"]
 [ext_resource type="Texture2D" uid="uid://dwmwq5pqt2hpi" path="res://character/Swashbuckler_walk.png" id="3_i3pqv"]
+[ext_resource type="PackedScene" uid="uid://emgcfthkkffo" path="res://Resources/InventoryWindow.tscn" id="6_2hs0m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hqtel"]
 atlas = ExtResource("2_i3pqv")
@@ -332,6 +334,7 @@ radius = 3.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_onrkg")
+inv = ExtResource("2_2hs0m")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -345,3 +348,10 @@ shape = SubResource("CircleShape2D_hqtel")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(5, 5)
+
+[node name="InventoryWindow" parent="." instance=ExtResource("6_2hs0m")]
+z_index = 2
+offset_left = -58.0
+offset_top = -42.0
+offset_right = 58.0
+offset_bottom = 41.0

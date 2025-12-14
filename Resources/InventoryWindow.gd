@@ -2,18 +2,32 @@ extends Control
 
 @export var inventory_data : InventoryData
 var current_dragged_item_data : Dictionary
+var is_open  = false
 
 func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("inventar"):
+		if is_open: 
+			close()
+		else: 
+			open()
+			
 	if not has_node("ItemDrag"):
 		return
-		
 	get_node("ItemDrag").global_position = get_global_mouse_position() - get_node("ItemDrag").size / 2
 
 
-
 func _ready() -> void: 
+	close()
 	update_inventory_data()
 	connect_signals()
+
+func close(): 
+	visible = false
+	is_open = false
+	
+func open(): 
+	visible = true
+	is_open = true
 	
 	
 func connect_signals() -> void: 
@@ -22,7 +36,6 @@ func connect_signals() -> void:
 func update_inventory_data() -> void: 
 	for slot in %SlotGroup.get_children():
 		slot.queue_free()
-		
 	for item_data in inventory_data.item_data: 
 		var new_slot = preload("res://Resources/Slot.tscn").instantiate()
 		new_slot.current_item = item_data

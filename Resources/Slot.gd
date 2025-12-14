@@ -1,4 +1,4 @@
-extends TextureRect
+extends Panel
 class_name Slot
 
 @export var current_item : ItemData
