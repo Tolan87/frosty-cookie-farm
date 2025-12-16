@@ -1,21 +1,12 @@
 [gd_resource type="Resource" script_class="InventoryData" load_steps=18 format=3 uid="uid://bg04808q25l4i"]
 
 [ext_resource type="Script" uid="uid://c51f6ssx64xs8" path="res://ItemData.gd" id="1_350o2"]
+[ext_resource type="Resource" uid="uid://eax6d3jef7ax" path="res://Resources/Items/bell.tres" id="2_350o2"]
+[ext_resource type="Resource" uid="uid://bl5aopwp5xwfm" path="res://Resources/Items/flowerSeedWhite.tres" id="2_jy06b"]
+[ext_resource type="Resource" uid="uid://du45amnlawhrk" path="res://Resources/Items/gift_green.tres" id="3_jy06b"]
 [ext_resource type="Script" uid="uid://b2utpesq47vin" path="res://InventoryData.gd" id="4_pfkc2"]
 
-[sub_resource type="Resource" id="Resource_0j7oh"]
-script = ExtResource("1_350o2")
-metadata/_custom_type_script = "uid://c51f6ssx64xs8"
-
-[sub_resource type="Resource" id="Resource_db72t"]
-script = ExtResource("1_350o2")
-metadata/_custom_type_script = "uid://c51f6ssx64xs8"
-
 [sub_resource type="Resource" id="Resource_350o2"]
-script = ExtResource("1_350o2")
-metadata/_custom_type_script = "uid://c51f6ssx64xs8"
-
-[sub_resource type="Resource" id="Resource_jy06b"]
 script = ExtResource("1_350o2")
 metadata/_custom_type_script = "uid://c51f6ssx64xs8"
 
@@ -65,5 +56,5 @@ metadata/_custom_type_script = "uid://c51f6ssx64xs8"
 
 [resource]
 script = ExtResource("4_pfkc2")
-item_data = Array[ExtResource("1_350o2")]([SubResource("Resource_0j7oh"), SubResource("Resource_db72t"), SubResource("Resource_350o2"), SubResource("Resource_jy06b"), SubResource("Resource_xd77l"), SubResource("Resource_pfkc2"), SubResource("Resource_00ok5"), SubResource("Resource_u3voo"), SubResource("Resource_avtm2"), SubResource("Resource_6unl5"), SubResource("Resource_oo7wb"), SubResource("Resource_2uy8x"), SubResource("Resource_3wwfl"), SubResource("Resource_je2jw"), SubResource("Resource_rlnhf")])
+item_data = Array[ExtResource("1_350o2")]([ExtResource("2_jy06b"), ExtResource("2_350o2"), SubResource("Resource_350o2"), ExtResource("3_jy06b"), SubResource("Resource_xd77l"), SubResource("Resource_pfkc2"), SubResource("Resource_00ok5"), SubResource("Resource_u3voo"), SubResource("Resource_avtm2"), SubResource("Resource_6unl5"), SubResource("Resource_oo7wb"), SubResource("Resource_2uy8x"), SubResource("Resource_3wwfl"), SubResource("Resource_je2jw"), SubResource("Resource_rlnhf")])
 metadata/_custom_type_script = "uid://b2utpesq47vin"
