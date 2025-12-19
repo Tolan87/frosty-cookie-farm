@@ -39,4 +39,7 @@ func get_direction_name() -> String:
 	if look_direction.x > 0: return "right"
 	return "down" 
 	
+	
+func collect(item):
+	inv.insert(item)
  

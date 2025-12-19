@@ -1,7 +1,7 @@
 extends StaticBody2D
 
 var selected = false
-var seedType = 2 #flowerWhite
+var seedType = 1 #flowerPurple
 
 func _ready():
 	$AnimatedSprite2D.play("default")

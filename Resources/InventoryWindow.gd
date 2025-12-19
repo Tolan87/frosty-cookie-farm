@@ -33,12 +33,15 @@ func open():
 func connect_signals() -> void: 
 	GlobalSignals.connect("UpdateInventory", update_inventory_data)
 	
-func update_inventory_data() -> void: 
+func update_inventory_data() -> void:
 	for slot in %SlotGroup.get_children():
 		slot.queue_free()
-	for item_data in inventory_data.item_data: 
-		var new_slot = preload("res://Resources/Slot.tscn").instantiate()
-		new_slot.current_item = item_data
+
+	var slot_scene := preload("res://Resources/Slot.tscn")
+
+	for slot_data in inventory_data.slots:
+		var new_slot: Slot = slot_scene.instantiate()
+		new_slot.set_slot(slot_data)
 		%SlotGroup.add_child(new_slot)
 	
 func _input(event: InputEvent) -> void:
@@ -49,7 +52,7 @@ func _input(event: InputEvent) -> void:
 		if hovered_node is Slot:
 			var current_index = hovered_node.get_index()
 			
-			if not inventory_data.item_data[current_index]:
+			if not inventory_data.slots[current_index]:
 				return
 			create_drag_item(current_index)
 			inventory_data.item_data[current_index] = null
@@ -67,27 +70,27 @@ func _input(event: InputEvent) -> void:
 			delete_dragged_item()
 			
 		if not hovered_node is Slot: 
-			inventory_data.item_data[index] = item
+			inventory_data.slots[index] = item
 			GlobalSignals.UpdateInventory.emit()
 			return
 			
-		if inventory_data.item_data[hovered_node.get_index()]:
-			inventory_data.item_data[index] = item
+		if inventory_data.slots[hovered_node.get_index()]:
+			inventory_data.slots[index] = item
 			GlobalSignals.UpdateInventory.emit()
 			return
 			
 
 			
-		inventory_data.item_data[hovered_node.get_index()] = item 
+		inventory_data.slots[hovered_node.get_index()] = item 
 		current_dragged_item_data.clear()
 		GlobalSignals.UpdateInventory.emit()
 			
 			
 func create_drag_item(Index : int) -> void: 
-	current_dragged_item_data = {"Item" : inventory_data.item_data[Index], "Index" : Index}
+	current_dragged_item_data = {"Item" : inventory_data.slots[Index], "Index" : Index}
 	
 	var new_drag_item : TextureRect = TextureRect.new()
-	new_drag_item.texture = inventory_data.item_data[Index].item_texture
+	new_drag_item.texture = inventory_data.slots[Index].item_texture
 	new_drag_item.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	new_drag_item.name = "ItemDrag"
 	add_child(new_drag_item)

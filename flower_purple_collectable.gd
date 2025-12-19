@@ -5,7 +5,8 @@ func _ready():
 	
 func dropItem():
 	$AnimationPlayer.play("drop_item")
-	await get_tree().create_timer(1.5).timeout
+	await get_tree().create_timer(0.5).timeout
+	$AnimationPlayer.play("idle")
+	await get_tree().create_timer(5.0).timeout
 	$AnimationPlayer.play("fade")
-	print("+1 item")
 	await get_tree().create_timer(0.3).timeout

@@ -1,14 +1,27 @@
 extends Panel
 class_name Slot
 
-@export var current_item : ItemData
+var slot_data: SlotData = null
 
-func _ready() -> void: 
-	set_item_slot()
-	
-func set_item_slot() -> void: 
-	if not current_item:
+func set_slot(data: SlotData) -> void:
+	slot_data = data
+	update_ui()
+
+func clear_slot() -> void:
+	slot_data = null
+	update_ui()
+
+func update_ui() -> void:
+	if slot_data == null or slot_data.item == null or slot_data.amount <= 0:
+		%ItemTexture.visible = false
+		%ItemAmount.visible = false
 		return
-	%ItemTexture.texture = current_item.item_texture
-	%ItemAmount.text = str(current_item.item_amount)
-	
+
+	%ItemTexture.visible = true
+	%ItemTexture.texture = slot_data.item.item_texture
+
+	if slot_data.amount > 1:
+		%ItemAmount.visible = true
+		%ItemAmount.text = str(slot_data.amount)
+	else:
+		%ItemAmount.visible = false

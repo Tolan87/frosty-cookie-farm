@@ -3,8 +3,15 @@ extends StaticBody2D
 var plant = GlobalSignals.plantSelected
 var plantGrowing = false
 var plantGrown = false 
+var player_in_area = false
 
 var flowerPurpleItem = preload("res://flower_purple_collectable.tscn")
+var flowerWhiteItem = preload("res://flower_purple_collectable.tscn")
+
+@export var purple_item: ItemData
+@export var white_item: ItemData
+
+var player = null
 
 func _physics_process(delta: float) -> void:
 	if plantGrowing == false: 
@@ -24,11 +31,18 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		else: 
 			print('plant is already growing here')
 
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		player_in_area = true
+		player = body
 
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		player_in_area = false
+		player = null
+		
 func _on_flower_purple_timer_timeout() -> void:
 	var flowerPurple = $plant
-	print(flowerPurple.frame)
-	
 	if flowerPurple.frame == 0:
 		flowerPurple.frame = 1
 		$flowerPurpleTimer.start()
@@ -42,7 +56,6 @@ func _on_flower_purple_timer_timeout() -> void:
 
 func _on_flower_white_timer_timeout() -> void:
 	var flowerWhite = $plant
-	print(flowerWhite.frame)
 	
 	if flowerWhite.frame == 0:
 		flowerWhite.frame = 1
@@ -63,24 +76,30 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 				plantGrowing = false
 				plantGrown = false
 				$plant.play("none")
-				drop_item(plant)
 			if plant == 2:
 				GlobalSignals.numOfFlowerWhite += 1
 				plantGrowing = false
 				plantGrown = false
 				$plant.play("none")
-				drop_item(plant)
 			else:
 				pass
 				
+			drop_item(plant)
+		
 func drop_item(plant: int):
 	if plant == 1: 
 		var flowerPurple_instance = flowerPurpleItem.instantiate()
-		
 		flowerPurple_instance.global_position = $Marker2D.global_position
+		player.collect(purple_item)
+	
 		get_parent().add_child(flowerPurple_instance)
 
 		await get_tree().create_timer(3).timeout
-		
+	if plant == 2: 
+		var flowerWhite_instance = flowerWhiteItem.instantiate()
+		flowerWhite_instance.global_position = $Marker2D.global_position
+		player.collect(white_item)
+	
+		get_parent().add_child(flowerWhite_instance)
 
-		
+		await get_tree().create_timer(3).timeout

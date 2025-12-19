@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://c0w5rtfp06teq"]
+[gd_scene load_steps=19 format=3 uid="uid://c0w5rtfp06teq"]
 
 [ext_resource type="Script" uid="uid://bekhkositnrwy" path="res://growing_zone.gd" id="1_3kj68"]
 [ext_resource type="Texture2D" uid="uid://lny5kflw5o6m" path="res://Resources/Sprites/growingzone.png" id="1_n6jss"]
 [ext_resource type="Texture2D" uid="uid://by11kjp4i4tdw" path="res://flower-purple.png" id="2_3kj68"]
+[ext_resource type="Resource" uid="uid://t1nvy5q7g7ac" path="res://Resources/Items/flowerPurple.tres" id="2_tsn3r"]
 [ext_resource type="Texture2D" uid="uid://bsi5j5rhe6r3h" path="res://RPG snow tileset (full).png" id="4_u5nyg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u5nyg"]
@@ -106,6 +107,8 @@ animations = [{
 
 [node name="growingZone" type="StaticBody2D"]
 script = ExtResource("1_3kj68")
+purple_item = ExtResource("2_tsn3r")
+white_item = ExtResource("2_tsn3r")
 
 [node name="hoedland" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_tsn3r")
@@ -115,20 +118,20 @@ sprite_frames = SubResource("SpriteFrames_tsn3r")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_y8uv2")
 
-[node name="Marker2D" type="Marker2D" parent="Area2D"]
-position = Vector2(5, 0)
-
 [node name="plant" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_qij1w")
 animation = &"none"
 
 [node name="flowerPurpleTimer" type="Timer" parent="."]
-wait_time = 5.0
 
 [node name="flowerWhiteTimer" type="Timer" parent="."]
-wait_time = 5.0
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(7, 6)
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
 [connection signal="timeout" from="flowerPurpleTimer" to="." method="_on_flower_purple_timer_timeout"]
 [connection signal="timeout" from="flowerWhiteTimer" to="." method="_on_flower_white_timer_timeout"]
