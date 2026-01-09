@@ -55,7 +55,8 @@ func _input(event: InputEvent) -> void:
 			if not inventory_data.slots[current_index]:
 				return
 			create_drag_item(current_index)
-			inventory_data.item_data[current_index] = null
+			inventory_data.slots[current_index].item = null
+			inventory_data.slots[current_index].amount = 0
 			GlobalSignals.UpdateInventory.emit()
 			
 	if not current_dragged_item_data:
@@ -87,10 +88,15 @@ func _input(event: InputEvent) -> void:
 			
 			
 func create_drag_item(Index : int) -> void: 
-	current_dragged_item_data = {"Item" : inventory_data.slots[Index], "Index" : Index}
+	var slot_data: SlotData = inventory_data.slots[Index]
+	
+	if slot_data == null or slot_data.item == null or slot_data.amount <= 0:
+		return 
+		
+	current_dragged_item_data = {"Item" : slot_data.item, "Index" : Index}
 	
 	var new_drag_item : TextureRect = TextureRect.new()
-	new_drag_item.texture = inventory_data.slots[Index].item_texture
+	new_drag_item.texture = slot_data.item.item_texture
 	new_drag_item.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	new_drag_item.name = "ItemDrag"
 	add_child(new_drag_item)

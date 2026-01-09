@@ -98,7 +98,7 @@ func drop_item(plant: int):
 	if plant == 2: 
 		var flowerWhite_instance = flowerWhiteItem.instantiate()
 		flowerWhite_instance.global_position = $Marker2D.global_position
-		player.collect(white_item)
+		player.collect(purple_item)
 	
 		get_parent().add_child(flowerWhite_instance)
 
