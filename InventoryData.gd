@@ -5,7 +5,6 @@ signal update
 @export var slots: Array[SlotData] = []
 
 func insert(item: ItemData) -> void:
-	print(item)
 	for slot in slots:
 		if slot.item == item and slot.item != null:
 			slot.amount += 1

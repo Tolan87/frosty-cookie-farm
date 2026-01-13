@@ -67,6 +67,8 @@ func _input(event: InputEvent) -> void:
 		var item = current_dragged_item_data.get("Item")
 		var index = current_dragged_item_data.get("Index")
 		
+		print(item, "item")
+		
 		if has_node("ItemDrag"):
 			delete_dragged_item()
 			
