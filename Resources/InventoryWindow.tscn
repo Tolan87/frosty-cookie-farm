@@ -1,23 +1,30 @@
-[gd_scene load_steps=5 format=3 uid="uid://emgcfthkkffo"]
+[gd_scene format=3 uid="uid://emgcfthkkffo"]
 
 [ext_resource type="Script" uid="uid://bwebvl0gww585" path="res://Resources/InventoryWindow.gd" id="1_8jhkm"]
 [ext_resource type="Resource" uid="uid://bg04808q25l4i" path="res://Resources/playerInv.tres" id="2_ndux4"]
 [ext_resource type="Texture2D" uid="uid://dx3w4iqfmh3c4" path="res://Resources/inventorybg.png" id="3_ndux4"]
 [ext_resource type="PackedScene" uid="uid://2exm4b2bv4yh" path="res://Resources/Slot.tscn" id="4_4p8hc"]
 
-[node name="InventoryWindow" type="Control"]
-visible = false
+[node name="InventoryWindow" type="Control" unique_id=1850281802]
 custom_minimum_size = Vector2(103, 68)
 layout_mode = 3
-anchors_preset = 0
-offset_right = 103.0
-offset_bottom = 68.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -61.5
+offset_top = -44.0
+offset_right = 61.5
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_8jhkm")
 inventory_data = ExtResource("2_ndux4")
 
-[node name="NinePatchRect" type="NinePatchRect" parent="."]
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=377185689]
 custom_minimum_size = Vector2(118, 85)
 layout_mode = 1
 offset_right = 118.0
@@ -28,7 +35,7 @@ patch_margin_top = 20
 patch_margin_right = 20
 patch_margin_bottom = 20
 
-[node name="SlotGroup" type="GridContainer" parent="NinePatchRect"]
+[node name="SlotGroup" type="GridContainer" parent="NinePatchRect" unique_id=605793883]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -46,52 +53,52 @@ size_flags_horizontal = 0
 size_flags_vertical = 4
 columns = 5
 
-[node name="Slot1" parent="NinePatchRect/SlotGroup" instance=ExtResource("4_4p8hc")]
+[node name="Slot1" parent="NinePatchRect/SlotGroup" unique_id=361677145 instance=ExtResource("4_4p8hc")]
 layout_mode = 2
 
-[node name="Slot2" parent="NinePatchRect/SlotGroup" instance=ExtResource("4_4p8hc")]
+[node name="Slot2" parent="NinePatchRect/SlotGroup" unique_id=1821290980 instance=ExtResource("4_4p8hc")]
 layout_mode = 2
 
-[node name="Slot3" parent="NinePatchRect/SlotGroup" instance=ExtResource("4_4p8hc")]
+[node name="Slot3" parent="NinePatchRect/SlotGroup" unique_id=1742139900 instance=ExtResource("4_4p8hc")]
 layout_mode = 2
 
-[node name="Slot4" parent="NinePatchRect/SlotGroup" instance=ExtResource("4_4p8hc")]
+[node name="Slot4" parent="NinePatchRect/SlotGroup" unique_id=1855471166 instance=ExtResource("4_4p8hc")]
 layout_mode = 2
 
-[node name="Slot5" parent="NinePatchRect/SlotGroup" instance=ExtResource("4_4p8hc")]
+[node name="Slot5" parent="NinePatchRect/SlotGroup" unique_id=763962735 instance=ExtResource("4_4p8hc")]
 layout_mode = 2
 
-[node name="Slot6" parent="NinePatchRect/SlotGroup" instance=ExtResource("4_4p8hc")]
+[node name="Slot6" parent="NinePatchRect/SlotGroup" unique_id=169183958 instance=ExtResource("4_4p8hc")]
 layout_mode = 2
 
-[node name="Slot7" parent="NinePatchRect/SlotGroup" instance=ExtResource("4_4p8hc")]
+[node name="Slot7" parent="NinePatchRect/SlotGroup" unique_id=1015520507 instance=ExtResource("4_4p8hc")]
 layout_mode = 2
 
-[node name="Slot8" parent="NinePatchRect/SlotGroup" instance=ExtResource("4_4p8hc")]
+[node name="Slot8" parent="NinePatchRect/SlotGroup" unique_id=886119760 instance=ExtResource("4_4p8hc")]
 layout_mode = 2
 
-[node name="Slot9" parent="NinePatchRect/SlotGroup" instance=ExtResource("4_4p8hc")]
+[node name="Slot9" parent="NinePatchRect/SlotGroup" unique_id=816689637 instance=ExtResource("4_4p8hc")]
 layout_mode = 2
 
-[node name="Slot10" parent="NinePatchRect/SlotGroup" instance=ExtResource("4_4p8hc")]
+[node name="Slot10" parent="NinePatchRect/SlotGroup" unique_id=2045081997 instance=ExtResource("4_4p8hc")]
 layout_mode = 2
 
-[node name="Slot11" parent="NinePatchRect/SlotGroup" instance=ExtResource("4_4p8hc")]
+[node name="Slot11" parent="NinePatchRect/SlotGroup" unique_id=792175747 instance=ExtResource("4_4p8hc")]
 layout_mode = 2
 
-[node name="Slot12" parent="NinePatchRect/SlotGroup" instance=ExtResource("4_4p8hc")]
+[node name="Slot12" parent="NinePatchRect/SlotGroup" unique_id=2041987155 instance=ExtResource("4_4p8hc")]
 layout_mode = 2
 
-[node name="Slot13" parent="NinePatchRect/SlotGroup" instance=ExtResource("4_4p8hc")]
+[node name="Slot13" parent="NinePatchRect/SlotGroup" unique_id=1272585244 instance=ExtResource("4_4p8hc")]
 layout_mode = 2
 
-[node name="Slot14" parent="NinePatchRect/SlotGroup" instance=ExtResource("4_4p8hc")]
+[node name="Slot14" parent="NinePatchRect/SlotGroup" unique_id=563354881 instance=ExtResource("4_4p8hc")]
 layout_mode = 2
 
-[node name="Slot15" parent="NinePatchRect/SlotGroup" instance=ExtResource("4_4p8hc")]
+[node name="Slot15" parent="NinePatchRect/SlotGroup" unique_id=442683950 instance=ExtResource("4_4p8hc")]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect"]
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect" unique_id=1928129746]
 layout_mode = 0
 offset_left = 71.21094
 offset_top = 36.234375

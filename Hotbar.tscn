@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://ckrm01d38df1x"]
+
+[ext_resource type="Script" uid="uid://lr7fxrk442sq" path="res://HotbarUI.gd" id="1_7rplg"]
+[ext_resource type="Resource" uid="uid://cy72ppb2bd423" path="res://playerHotbar.tres" id="2_7rplg"]
+[ext_resource type="PackedScene" uid="uid://2exm4b2bv4yh" path="res://Resources/Slot.tscn" id="3_7rplg"]
+
+[node name="Control" type="Control" unique_id=427111332]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -567.3125
+offset_top = -321.5
+offset_right = 567.3125
+offset_bottom = 321.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7rplg")
+hotbar_data = ExtResource("2_7rplg")
+
+[node name="SlotGroup" type="HBoxContainer" parent="." unique_id=4954056]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -438.99997
+offset_top = -110.5
+offset_right = -262.99997
+offset_bottom = -94.5
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(4.5, 4.5)
+size_flags_horizontal = 4
+size_flags_vertical = 8
+alignment = 1
+
+[node name="Slot" parent="SlotGroup" unique_id=332017163 instance=ExtResource("3_7rplg")]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Slot2" parent="SlotGroup" unique_id=465241349 instance=ExtResource("3_7rplg")]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Slot3" parent="SlotGroup" unique_id=729360773 instance=ExtResource("3_7rplg")]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Slot4" parent="SlotGroup" unique_id=1426507609 instance=ExtResource("3_7rplg")]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Slot5" parent="SlotGroup" unique_id=385717620 instance=ExtResource("3_7rplg")]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Slot6" parent="SlotGroup" unique_id=229787607 instance=ExtResource("3_7rplg")]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Slot7" parent="SlotGroup" unique_id=1862166710 instance=ExtResource("3_7rplg")]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Slot8" parent="SlotGroup" unique_id=1740582145 instance=ExtResource("3_7rplg")]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Slot9" parent="SlotGroup" unique_id=177538441 instance=ExtResource("3_7rplg")]
+layout_mode = 2
+size_flags_horizontal = 4

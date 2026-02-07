@@ -7,6 +7,7 @@ const GRAVITY := 100
 @onready var animated_sprite = $AnimatedSprite2D
 
 @export var inv: InventoryData
+@export var hotbar: HotbarData
 
 var look_direction: Vector2 = Vector2.DOWN
 
@@ -41,5 +42,5 @@ func get_direction_name() -> String:
 	
 	
 func collect(item):
-	inv.insert(item)
+	hotbar.insertHotbar(item)
  

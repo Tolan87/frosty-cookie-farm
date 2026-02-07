@@ -1,9 +1,9 @@
 extends Resource
-class_name InventoryData
+class_name HotbarData
 
-signal update
+signal update 
+@export var size: int = 9
 @export var slots: Array[SlotData] = []
-@export var size: int = 15
 
 func ensure_initialized() -> void:
 	while slots.size() < size: 
@@ -12,8 +12,8 @@ func ensure_initialized() -> void:
 	for i in range(slots.size()):
 		if slots[i] == null:
 			slots[i] = SlotData.new()
-
-func insert(item: ItemData) -> void:
+			
+func insertHotbar(item: ItemData) -> void:
 	for slot in slots:
 		if slot.item == item and slot.item != null:
 			slot.amount += 1

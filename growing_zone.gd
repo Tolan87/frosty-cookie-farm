@@ -31,15 +31,6 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		else: 
 			print('plant is already growing here')
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player"):
-		player_in_area = true
-		player = body
-
-func _on_area_2d_body_exited(body: Node2D) -> void:
-	if body.is_in_group("player"):
-		player_in_area = false
-		player = null
 		
 func _on_flower_purple_timer_timeout() -> void:
 	var flowerPurple = $plant
@@ -70,7 +61,7 @@ func _on_flower_white_timer_timeout() -> void:
 
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if Input.is_action_just_pressed("mouse_left"):
-		if plantGrown: 
+		if plantGrown && player_in_area: 
 			if plant == 1:
 				GlobalSignals.numOfFlowerPurple += 1
 				plantGrowing = false
@@ -103,3 +94,15 @@ func drop_item(plant: int):
 		get_parent().add_child(flowerWhite_instance)
 
 		await get_tree().create_timer(3).timeout
+
+
+func _on_pick_up_body_entered(body: Node2D) -> void:
+	print(body.is_in_group("player"))
+	if body.is_in_group("player"):
+		player_in_area = true
+		player = body
+		
+
+func _on_pick_up_body_exited(body: Node2D) -> void:
+	player_in_area = false
+	player = null

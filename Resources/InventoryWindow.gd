@@ -1,7 +1,9 @@
 extends Control
 
 @export var inventory_data : InventoryData
+@export var hotbar_data : HotbarData
 var current_dragged_item_data : Dictionary
+@export var drag_controller: DragController
 var is_open  = false
 
 func _process(delta: float) -> void:
@@ -11,12 +13,11 @@ func _process(delta: float) -> void:
 		else: 
 			open()
 			
-	if not has_node("ItemDrag"):
-		return
-	get_node("ItemDrag").global_position = get_global_mouse_position() - get_node("ItemDrag").size / 2
-
 
 func _ready() -> void: 
+	inventory_data.ensure_initialized()
+	inventory_data.update.connect(update_inventory_data)
+
 	close()
 	update_inventory_data()
 	connect_signals()
@@ -33,77 +34,20 @@ func open():
 func connect_signals() -> void: 
 	GlobalSignals.connect("UpdateInventory", update_inventory_data)
 	
-func update_inventory_data() -> void:
+func update_inventory_data():
 	for slot in %SlotGroup.get_children():
 		slot.queue_free()
 
 	var slot_scene := preload("res://Resources/Slot.tscn")
 
-	for slot_data in inventory_data.slots:
+	for i in range(inventory_data.slots.size()):
 		var new_slot: Slot = slot_scene.instantiate()
-		new_slot.set_slot(slot_data)
+		new_slot.owner_kind = "inventory"
+		new_slot.slot_index = i 
+		
+		new_slot.set_slot(inventory_data.slots[i])
+		new_slot.drag_started.connect(drag_controller.start_drag)
+		new_slot.drag_released.connect(func(_slot): drag_controller.finish_drag(get_viewport().gui_get_hovered_control()))
+		
 		%SlotGroup.add_child(new_slot)
-	
-func _input(event: InputEvent) -> void:
-	
-	if event.is_action_pressed("mouse_left"):
-		var hovered_node = get_viewport().gui_get_hovered_control()
 		
-		if hovered_node is Slot:
-			var current_index = hovered_node.get_index()
-			
-			if not inventory_data.slots[current_index]:
-				return
-			create_drag_item(current_index)
-			inventory_data.slots[current_index].item = null
-			inventory_data.slots[current_index].amount = 0
-			GlobalSignals.UpdateInventory.emit()
-			
-	if not current_dragged_item_data:
-		return
-
-	if event.is_action_released("mouse_left"):
-		var hovered_node = get_viewport().gui_get_hovered_control()
-		var item = current_dragged_item_data.get("Item")
-		var index = current_dragged_item_data.get("Index")
-		
-		print(item, "item")
-		
-		if has_node("ItemDrag"):
-			delete_dragged_item()
-			
-		if not hovered_node is Slot: 
-			inventory_data.slots[index] = item
-			GlobalSignals.UpdateInventory.emit()
-			return
-			
-		if inventory_data.slots[hovered_node.get_index()]:
-			inventory_data.slots[index] = item
-			GlobalSignals.UpdateInventory.emit()
-			return
-			
-
-			
-		inventory_data.slots[hovered_node.get_index()] = item 
-		current_dragged_item_data.clear()
-		GlobalSignals.UpdateInventory.emit()
-			
-			
-func create_drag_item(Index : int) -> void: 
-	var slot_data: SlotData = inventory_data.slots[Index]
-	
-	if slot_data == null or slot_data.item == null or slot_data.amount <= 0:
-		return 
-		
-	current_dragged_item_data = {"Item" : slot_data.item, "Index" : Index}
-	
-	var new_drag_item : TextureRect = TextureRect.new()
-	new_drag_item.texture = slot_data.item.item_texture
-	new_drag_item.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	new_drag_item.name = "ItemDrag"
-	add_child(new_drag_item)
-	
-
-func delete_dragged_item() -> void: 
-	get_node("ItemDrag").queue_free()
-			
