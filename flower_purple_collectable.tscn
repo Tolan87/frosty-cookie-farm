@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bmvccgxrow6vv"]
+[gd_scene format=3 uid="uid://bmvccgxrow6vv"]
 
 [ext_resource type="Script" uid="uid://dn4nqt5krx4da" path="res://flower_purple_collectable.gd" id="1_lj7wh"]
 [ext_resource type="Texture2D" uid="uid://do3kxa8icmq7t" path="res://winter_global_shadow.png" id="2_gnyyp"]
@@ -136,14 +136,12 @@ _data = {
 &"idle": SubResource("Animation_lj7wh")
 }
 
-[node name="flowerPurpleCollectable" type="StaticBody2D"]
+[node name="flowerPurpleCollectable" type="Node2D" unique_id=1900768202]
 script = ExtResource("1_lj7wh")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1851806478]
 sprite_frames = SubResource("SpriteFrames_lxxjk")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_k34fg")
-}
-autoplay = "idle"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1005996355]
+libraries/ = SubResource("AnimationLibrary_k34fg")
+autoplay = &"idle"

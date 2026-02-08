@@ -6,7 +6,7 @@ var current_dragged_item_data : Dictionary
 @export var drag_controller: DragController
 var is_open  = false
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("inventar"):
 		if is_open: 
 			close()

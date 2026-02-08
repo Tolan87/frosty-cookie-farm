@@ -6,21 +6,20 @@ signal update
 @export var slots: Array[SlotData] = []
 
 func _init():
-	while slots.size() < size:
+	for i in range(size):
 		slots.append(SlotData.new())
 			
-func insertHotbar(item: ItemData) -> void:
-	for slot in slots:
-		if slot.item == item and slot.item != null:
-			slot.amount += 1
+func insert_hotbar(item: ItemData) -> void:
+	for i in range(slots.size()):
+		if slots[i] != null and slots[i].item == item:
+			slots[i].amount += 1
 			update.emit()
 			return
-
-	for slot in slots:
-		if slot.item == null:
-			slot.item = item
-			slot.amount = 1
-			update.emit()
-			return
+	
+	for i in range(slots.size()):
+		slots[i].item = item
+		slots[i].amount = 1
+		update.emit()
+		return
 
 	print("Inventar ist voll")

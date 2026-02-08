@@ -15,11 +15,11 @@ var player: CharacterBody2D = null
 func _ready():
 	player = get_node("../env/Player") as CharacterBody2D
 
-func _physics_process(delta: float):
+func _physics_process(_delta: float):
 	if plantGrowing == false: 
 		plant = GlobalSignals.plantSelected
 
-func _on_area_entered(area: Area2D):
+func _on_area_entered(_area: Area2D):
 	if not plantGrowing: 
 		if plant == 1:
 			plantGrowing = true
@@ -58,7 +58,7 @@ func _on_flower_white_timer_timeout() -> void:
 		flowerWhite.frame = 3
 		plantGrown = true
 
-func _on_input_event(viewport, event, shape_idx):
+func _on_input_event(_viewport, event, _shape_idx):
 	if event.is_action_pressed("mouse_left"):
 		if plantGrown && is_player_in_area(): 
 			if plant == 1:
@@ -80,12 +80,12 @@ func drop_item(plant: int) -> void:
 	if plant == 1: 
 		var flowerPurple_instance = flowerPurpleItem.instantiate()
 		flowerPurple_instance.global_position = $Marker2D.global_position
-		purple_item.item_name 
 		player.collect(purple_item)
 	
 		get_parent().add_child(flowerPurple_instance)
 
 		await get_tree().create_timer(3).timeout
+		
 	if plant == 2: 
 		var flowerWhite_instance = flowerWhiteItem.instantiate()
 		flowerWhite_instance.global_position = $Marker2D.global_position
