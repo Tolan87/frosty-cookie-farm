@@ -112,7 +112,7 @@ func create_drag_item(slot_data: SlotData) -> void:
 		drag_root.add_child(label)
 	
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if has_node("ItemDrag"):
 		$ItemDrag.global_position = get_global_mouse_position() - $ItemDrag.size / 2
 

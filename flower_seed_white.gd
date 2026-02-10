@@ -6,7 +6,7 @@ var seedType = 2 #flowerWhite
 func _ready():
 	$AnimatedSprite2D.play("default")
 	
-func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event.is_action_pressed("mouse_left"):
 		GlobalSignals.plantSelected = seedType
 		selected = true 

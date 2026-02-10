@@ -42,5 +42,5 @@ func get_direction_name() -> String:
 	
 	
 func collect(item) -> void:
-	hotbar.insert_hotbar(item)
+	hotbar.insertHotbar(item)
  
